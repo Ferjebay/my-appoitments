@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'phone', 'dni', 'address', 'role', 'password'
     ];
 
     /**
@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopePatients($query){
+        $query->where('role', 'patient');
+    }
+
+    public function scopeDoctors($query){
+        $query->where('role', 'doctor');
+    }
 }

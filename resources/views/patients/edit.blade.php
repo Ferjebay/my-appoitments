@@ -5,10 +5,10 @@
       <div class="card-header border-0">
         <div class="row align-items-center">
           <div class="col">
-            <h3 class="mb-0">Editar Medico</h3>
+            <h3 class="mb-0">Editar Paciente</h3>
           </div>
           <div class="col text-right">
-            <a href="{{ url('doctors') }}" class="btn btn-sm btn-default">
+            <a href="{{ url('patients') }}" class="btn btn-sm btn-default">
               Cancelar y volver
             </a>
           </div>
@@ -24,28 +24,28 @@
             </ul>
           </div>
         @endif
-        <form action="{{ route('doctors.update', [$doctor->id]) }}" method="post">
+        <form action="{{ route('patients.update', [$patient->id]) }}" method="post">
           @csrf
           @method('PUT')
           <div class="form-group">
             <label for="name">Nombre del medico</label>
-            <input type="text" name="name" class="form-control" value="{{ old('name', $doctor->name) }}" autocomplete="off">
+            <input type="text" name="name" class="form-control" value="{{ old('name', $patient->name) }}" autocomplete="off">
           </div>
           <div class="form-group">
             <label for="name">E-mail</label>
-            <input type="text" name="email" class="form-control" value="{{ old('email', $doctor->email) }}" autocomplete="off">
+            <input type="text" name="email" class="form-control" value="{{ old('email', $patient->email) }}" autocomplete="off">
           </div>
           <div class="form-group">
             <label for="name">DNI</label>
-            <input type="text" name="dni" class="form-control" value="{{ old('dni', $doctor->dni) }}" autocomplete="off">
+            <input type="text" name="dni" class="form-control" value="{{ old('dni', $patient->dni) }}" autocomplete="off">
           </div>
           <div class="form-group">
             <label for="name">Dirección</label>
-            <input type="text" name="address" class="form-control" value="{{ old('address', $doctor->address) }}" autocomplete="off">
+            <input type="text" name="address" class="form-control" value="{{ old('address', $patient->address) }}" autocomplete="off">
           </div>
           <div class="form-group">
             <label for="name">Telefono / Movil</label>
-            <input type="text" name="phone" class="form-control" value="{{ old('phone', $doctor->phone) }}" autocomplete="off">
+            <input type="text" name="phone" class="form-control" value="{{ old('phone', $patient->phone) }}" autocomplete="off">
           </div>
           <div class="form-group">
             <label for="name">Contraseña </label>
@@ -53,7 +53,7 @@
             <em>Ingrese un valor solo si desea modificar la contraseña</em>
           </div>
           <button type="submit" class="btn btn-primary">
-             Guardar
+             Editar
           </button>
         </form>
       </div>

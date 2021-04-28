@@ -24,7 +24,7 @@
             </ul>
           </div>
         @endif
-        <form action="{{ url('specialties') }}" method="post">
+        <form action="{{ route('doctors.store') }}" method="post">
           @csrf
           <div class="form-group">
             <label for="name">Nombre del medico</label>
@@ -40,11 +40,15 @@
           </div>
           <div class="form-group">
             <label for="name">Dirección</label>
-            <input type="text" name="direccion" class="form-control" value="{{ old('direccion') }}" autocomplete="off">
+            <input type="text" name="address" class="form-control" value="{{ old('address') }}" autocomplete="off">
           </div>
           <div class="form-group">
             <label for="name">Telefono / Movil</label>
             <input type="text" name="phone" class="form-control" value="{{ old('phone') }}" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="name">Contraseña</label>
+            <input type="text" name="password" class="form-control" value="{{ str_random(6) }}" autocomplete="off">
           </div>
           <button type="submit" class="btn btn-primary">
              Guardar

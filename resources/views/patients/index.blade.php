@@ -5,11 +5,11 @@
       <div class="card-header border-0">
         <div class="row align-items-center">
           <div class="col">
-            <h3 class="mb-0">Medicos</h3>
+            <h3 class="mb-0">Pacientes</h3>
           </div>
           <div class="col text-right">
-            <a href="{{ url('doctors/create') }}" class="btn btn-sm btn-success">
-              Nuevo medico
+            <a href="{{ url('patients/create') }}" class="btn btn-sm btn-success">
+              Nuevo paciente
             </a>
           </div>
         </div>
@@ -35,23 +35,23 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($doctors as $doctor)
+            @foreach($patients as $patient)
               <tr>
                 <th scope="row">
-                  {{ $doctor->name }}
+                  {{ $patient->name }}
                 </th>
                 <td>
-                  {{ $doctor->email }}
+                  {{ $patient->email }}
                 </td>
                 <td>
-                  {{ $doctor->dni }}
+                  {{ $patient->dni }}
                 </td>
                 <td>
-                  <a href="{{ route('doctors.edit', [$doctor->id]) }}" class="btn btn-primary btn-sm">Editar</a>
+                  <a href="{{ route('patients.edit', [$patient->id]) }}" class="btn btn-primary btn-sm">Editar</a>
                   <a href="#" class="btn btn-danger btn-sm" onclick="event.preventDefault(); document.getElementById('form-delete').submit()">
                     Eliminar
                   </a>
-                  <form action="{{ route('doctors.destroy', [$doctor->id]) }}" method="post" 
+                  <form action="{{ route('patients.destroy', [$patient->id]) }}" method="post" 
                     id="form-delete">
                     @csrf
                     @method('DELETE')
@@ -61,6 +61,9 @@
             @endforeach
           </tbody>
         </table>
+      </div>
+      <div class="card-body">
+        {{ $patients->links() }}        
       </div>
     </div>
 @endsection

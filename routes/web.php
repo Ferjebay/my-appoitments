@@ -18,8 +18,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/specialties', 'SpecialtyController');
 
-//Doctors
-Route::resource('/doctors', 'DoctorController');
-//Patients
+Route::middleware(['auth', 'admin'])->group(function () {
+	//Specialty
+	Route::resource('/specialties', 'Admin\SpecialtyController');
+	//Doctors
+	Route::resource('/doctors', 'Admin\DoctorController');
+	//Patients
+	Route::resource('/patients', 'Admin\PatientController');    
+});
+
+Route::middleware(['auth', 'doctor'])->namespace('doctor')->group(function () {
+	Route::get('/schedule', 'ScheduleController@edit');	 
+	Route::post('/schedule', 'ScheduleController@store');	 
+});
