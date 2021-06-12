@@ -16,6 +16,7 @@
   <link href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
   <!-- Argon CSS -->
   <link type="text/css" href="{{ asset('assets/css/argon.css') }}" rel="stylesheet">
+  @yield('styles')
 </head>
 
 <body>
@@ -133,6 +134,8 @@
   <script src="{{ asset('assets/vendor/chart.js/dist/Chart.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/chart.js/dist/Chart.extension.js') }}"></script>
   <!-- Argon JS -->
+  <script src="{{ asset('assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+  @yield('scripts')  
   <script src="{{ asset('assets/js/argon.js') }}"></script>
 </body>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Specialty;
 use App\Http\Controllers\Controller;
 
 class DoctorController extends Controller{
@@ -14,39 +15,43 @@ class DoctorController extends Controller{
     }
 
     public function create(){
-        return view('doctors.create');
+        $specialties = Specialty::all();
+        return view('doctors.create', compact('specialties'));
     }
 
     public function store(Request $request){
         $request->validate([
             'name' => 'required|min:5',
             'email' => 'required|email|unique:users,email',
-            'phone' => 'digits:10',
-            'dni' => 'digits:10',
+            'phone' => 'required',
+            'dni' => 'required',
             'address' => 'min:5'
         ]);
 
-        User::create(
+        $user = User::create(
             $request->only('name', 'email', 'phone', 'dni', 'address')
             + [
                 'role' => 'doctor',
                 'password' => bcrypt($request->password)
             ]
         );
+        $user->specialties()->attach($request->specialties);
         $notification = 'El doctor se ha creado satisfactoriamente';
         return redirect('/doctors')->with(compact('notification'));
     }
 
     public function edit(User $doctor){
-        return view('doctors.edit', compact('doctor'));
+        $specialties = Specialty::all();
+        $specialties_id = $doctor->specialties()->pluck('specialties.id');
+        return view('doctors.edit', compact('doctor', 'specialties', 'specialties_id'));
     }
 
     public function update(Request $request, $id){        
         $request->validate([
             'name' => 'required|min:5',
             'email' => 'required|email|unique:users,email,'.$id,
-            'phone' => 'digits:10',
-            'dni' => 'digits:10',
+            'phone' => 'required',
+            'dni' => 'required',
             'address' => 'min:5'
         ]);
         $user = User::doctors()->findOrFail($id);
@@ -57,6 +62,7 @@ class DoctorController extends Controller{
 
         $user->fill($data);
         $user->save();
+        $user->specialties()->sync($request->specialties);
         $notification = 'El doctor se ha editado satisfactoriamente';
         return redirect('/doctors')->with(compact('notification'));
     }

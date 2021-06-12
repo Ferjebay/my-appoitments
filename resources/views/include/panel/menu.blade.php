@@ -14,6 +14,11 @@
       </a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="{{ url('/appointments') }}">
+        <i class="ni ni-calendar-grid-58 text-orange"></i> Citas Medicas
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="{{ url('/specialties') }}">
         <i class="ni ni-planet text-blue"></i> Especialidades
       </a>
@@ -40,18 +45,18 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ url('/specialties') }}">
+      <a class="nav-link" href="{{ url('/appointments') }}">
         <i class="ni ni-calendar-grid-58 text-orange"></i> Mis citas
       </a>
     </li>
   @else {{-- patient --}}
     <li class="nav-item">
-      <a class="nav-link" href="{{ url('/specialties') }}">
+      <a class="nav-link" href="{{ url('/appointments/create') }}">
         <i class="ni ni-laptop text-blue"></i> Reservar cita
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ url('/specialties') }}">
+      <a class="nav-link" href="{{ url('/appointments') }}">
         <i class="ni ni-calendar-grid-58 text-orange"></i> Mis citas
       </a>
     </li>
@@ -74,12 +79,12 @@
   <!-- Navigation -->
   <ul class="navbar-nav mb-md-3">
     <li class="nav-item">
-      <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
+      <a class="nav-link" href="{{ url('/charts/appointments/line') }}">
         <i class="ni ni-spaceship"></i> Frecuencia de citas
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
+      <a class="nav-link" href="{{ url('/charts/doctors/bar') }}">
         <i class="ni ni-palette"></i> Médicos más activos
       </a>
     </li>

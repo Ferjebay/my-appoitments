@@ -27,3 +27,11 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+$factory->state(App\User::class, 'patient', [
+    'role' => 'patient'
+]);
+
+$factory->state(App\User::class, 'doctor', [
+    'role' => 'doctor'
+]);
